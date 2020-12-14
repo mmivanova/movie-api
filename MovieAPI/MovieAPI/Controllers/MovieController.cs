@@ -15,23 +15,14 @@ namespace MovieAPI.Controllers
         private static MovieRepository movieRepository = new MovieRepository();
         MovieService movieService = new MovieService(movieRepository);
 
-        //[HttpPost]
-        //public void Create(Movie movie)
-        //{
-        //    movieService.Create(movie);
-        //    Console.WriteLine(movie);
-        //}
-
         [HttpPost]
         public void Create([FromBody] Movie movie)
         {
             movieService.Create(movie);
         }
-
    
         [HttpGet]
         [Route("all")]
-        //[Route("{id?}")]
         public IEnumerable<Movie> GetAll()
         {
             return movieService.GetAll();
@@ -57,10 +48,6 @@ namespace MovieAPI.Controllers
         {
             movieService.Delete(id);
         }
-
-
-
-
     }
 }
 

@@ -23,10 +23,8 @@ namespace MovieAPI.Controllers
             Console.WriteLine(actor);
         }
 
-
         [HttpGet]
         [Route("all")]
-        //[Route("{id?}")]
         public IEnumerable<Actor> GetAll()
         {
             return actorService.GetAll();

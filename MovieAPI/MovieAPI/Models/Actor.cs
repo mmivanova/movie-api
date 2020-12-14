@@ -22,7 +22,7 @@ namespace MovieAPI.Models
         }
 
         [ForeignKey("ActorId")]
-        public ICollection<ActorMovie> ActorMovies { get; set; }
+        public ICollection<ActorMovie> Movies { get; set; }
 
 
     }

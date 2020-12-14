@@ -12,6 +12,6 @@ namespace MovieAPI.Models
         public string MovieTitle { get; set; }
         
         [ForeignKey("MovieId")]
-        public ICollection<ActorMovie> ActorMovies { get; set; }
+        public ICollection<ActorMovie> Actors { get; set; }
     }
 }
