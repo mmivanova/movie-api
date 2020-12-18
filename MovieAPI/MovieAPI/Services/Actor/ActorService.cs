@@ -13,6 +13,5 @@ namespace MovieAPI.Services
         public ActorService(GenericRepository<Actor, int> repository) : base(repository)
         {
         }
-
     }
 }

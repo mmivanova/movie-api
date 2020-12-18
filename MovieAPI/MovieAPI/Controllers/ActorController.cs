@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieAPI.Models;
 using MovieAPI.Repositories.Actor;
 using MovieAPI.Services;
+using Serilog;
 
 namespace MovieAPI.Controllers
 {
@@ -13,28 +14,27 @@ namespace MovieAPI.Controllers
     [Route("[controller]")]
     public class ActorController : Controller
     {
-        private static ActorRepository actorRepository = new ActorRepository();
-        ActorService actorService = new ActorService(actorRepository);
-        
+        private static readonly ActorRepository actorRepository = new ActorRepository();
+        readonly ActorService _service = new ActorService(actorRepository);
+
         [HttpPost]
         public void Create([FromBody] Actor actor)
         {
-            actorService.Create(actor);
-            Console.WriteLine(actor);
+            _service.Create(actor);
         }
 
         [HttpGet]
         [Route("all")]
         public IEnumerable<Actor> GetAll()
         {
-            return actorService.GetAll();
+            return _service.GetAll();
         }
 
         [HttpGet]
         [Route("{id?}")]
         public Actor Get([FromQuery] int id)
         {
-            return actorService.Get(id);
+            return _service.Get(id);
         }
 
         [HttpPut]
@@ -42,14 +42,13 @@ namespace MovieAPI.Controllers
 
             [FromBody] Actor actor)
         {
-
-            actorService.Update(actor);
+            _service.Update(actor);
         }
 
         [HttpDelete]
         public void Delete(int id)
         {
-            actorService.Delete(id);
+            _service.Delete(id);
         }
     }
 }

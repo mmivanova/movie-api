@@ -10,8 +10,8 @@ namespace MovieAPI.Repositories
     public abstract class GenericRepository<T, PK> : IRepository<T, PK>
         where T : class
     {
-        private APIDBContext _context = null;
-        private DbSet<T> table = null;
+        private readonly APIDBContext _context = null;
+        private readonly DbSet<T> table = null;
 
         protected GenericRepository()
         {

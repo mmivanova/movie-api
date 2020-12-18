@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieAPI.Models;
+using MovieAPI.Services.Movie;
 
 namespace MovieAPI.Controllers
 {
@@ -12,27 +13,27 @@ namespace MovieAPI.Controllers
     [Route("[controller]")]
     public class MovieController : ControllerBase
     {
-        private static MovieRepository movieRepository = new MovieRepository();
-        MovieService movieService = new MovieService(movieRepository);
+        private static readonly MovieRepository movieRepository = new MovieRepository();
+        readonly MovieService _service = new MovieService(movieRepository);
 
         [HttpPost]
         public void Create([FromBody] Movie movie)
         {
-            movieService.Create(movie);
+            _service.Create(movie);
         }
    
         [HttpGet]
         [Route("all")]
         public IEnumerable<Movie> GetAll()
         {
-            return movieService.GetAll();
+            return _service.GetAll();
         }
 
         [HttpGet]
         [Route("{id?}")]
         public Movie Get([FromQuery] int id)
         {
-            return movieService.Get(id);
+            return _service.Get(id);
         }
 
         [HttpPut]
@@ -40,13 +41,13 @@ namespace MovieAPI.Controllers
 
             [FromBody] Movie movie)
         {
-            movieService.Update(movie);
+            _service.Update(movie);
         }
 
         [HttpDelete]
         public void Delete(int id)
         {
-            movieService.Delete(id);
+            _service.Delete(id);
         }
     }
 }

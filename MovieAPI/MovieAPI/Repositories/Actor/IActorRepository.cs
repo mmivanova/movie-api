@@ -9,6 +9,5 @@ namespace MovieAPI.Repositories.Actor
     interface IActorRepository : IRepository<Models.Actor, int>
     {
        
-
     }
 }

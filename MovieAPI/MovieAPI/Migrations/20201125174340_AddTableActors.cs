@@ -40,6 +40,7 @@ namespace MovieAPI.Migrations
                 {
                     ActorMovieId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Actor_Movie = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ActorId = table.Column<int>(type: "int", nullable: false),
                     MovieId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -69,6 +70,7 @@ namespace MovieAPI.Migrations
                 name: "IX_ActorMovie_MovieId",
                 table: "ActorMovie",
                 column: "MovieId");
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

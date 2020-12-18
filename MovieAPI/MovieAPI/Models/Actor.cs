@@ -14,11 +14,10 @@ namespace MovieAPI.Models
         public string LastName { get; set; }
         
         private string fullName;
-
         public string FullName
         {
-            get { return fullName; }
-            set { fullName = FirstName + " " + LastName; }
+            get { return fullName = FirstName + " " + LastName; }
+            set { fullName = value;}
         }
 
         [ForeignKey("ActorId")]

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 namespace MovieAPI.Repositories
 {
     public interface IRepository<T, PK>
-        where T : class
+        where T : class 
+       
     {
         IEnumerable<T> GetAll();
         T Get(PK id);

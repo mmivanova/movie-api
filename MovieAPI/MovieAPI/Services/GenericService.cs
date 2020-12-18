@@ -1,4 +1,5 @@
-﻿using MovieAPI.Repositories;
+﻿using Microsoft.AspNetCore.Mvc;
+using MovieAPI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace MovieAPI.Services
     public abstract class GenericService<T, PK> : IService<T, PK>
         where T : class
     {
-        private GenericRepository<T, PK> repository;
+        private readonly GenericRepository<T, PK> repository;
 
         public GenericService(GenericRepository<T, PK> repository)
         {

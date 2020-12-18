@@ -10,7 +10,7 @@ namespace MovieAPI.Models
     {
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Actor> Actors { get; set; }
-        public DbSet<ActorMovie> ActorMovies { get; set; }
+        public DbSet<ActorMovie> ActorMovie { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

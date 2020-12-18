@@ -31,6 +31,7 @@ namespace MovieAPI
             services.AddControllers();
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IActorRepository, ActorRepository>();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +41,16 @@ namespace MovieAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
 

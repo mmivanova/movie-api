@@ -43,10 +43,10 @@ namespace MovieAPI.Migrations
 
             modelBuilder.Entity("MovieAPI.Models.ActorMovie", b =>
                 {
-                    b.Property<int>("ActorMovieId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    //b.Property<int>("ActorMovieId")
+                    //    .ValueGeneratedOnAdd()
+                    //    .HasColumnType("int")
+                    //    .UseIdentityColumn();
 
                     b.Property<int>("ActorId")
                         .HasColumnType("int");
@@ -54,7 +54,7 @@ namespace MovieAPI.Migrations
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("ActorMovieId");
+                    //b.HasKey("ActorMovieId");
 
                     b.HasIndex("ActorId");
 
@@ -81,13 +81,13 @@ namespace MovieAPI.Migrations
             modelBuilder.Entity("MovieAPI.Models.ActorMovie", b =>
                 {
                     b.HasOne("MovieAPI.Models.Actor", "Actor")
-                        .WithMany("ActorMovies")
+                        .WithMany("ActorMovie")
                         .HasForeignKey("ActorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MovieAPI.Models.Movie", "Movie")
-                        .WithMany("ActorMovies")
+                        .WithMany("ActorMovie")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -99,12 +99,12 @@ namespace MovieAPI.Migrations
 
             modelBuilder.Entity("MovieAPI.Models.Actor", b =>
                 {
-                    b.Navigation("ActorMovies");
+                    b.Navigation("ActorMovie");
                 });
 
             modelBuilder.Entity("MovieAPI.Models.Movie", b =>
                 {
-                    b.Navigation("ActorMovies");
+                    b.Navigation("ActorMovie");
                 });
 #pragma warning restore 612, 618
         }
