@@ -10,36 +10,37 @@ namespace MovieAPI.Services
     public abstract class GenericService<T, PK> : IService<T, PK>
         where T : class
     {
-        private readonly GenericRepository<T, PK> repository;
+        //private readonly GenericRepository<T, PK> _repository;
+        private readonly IRepository<T, PK> _repository;
 
-        public GenericService(GenericRepository<T, PK> repository)
+        public GenericService(IRepository<T, PK> repository)
         {
-            this.repository = repository;
+            _repository = repository;
         }
 
         public void Create(T t)
         {
-            repository.Create(t);
+            _repository.Create(t);
         }
 
         public void Delete(PK id)
         {
-            repository.Delete(id);
+            _repository.Delete(id);
         }
 
         public IEnumerable<T> GetAll()
         {
-            return repository.GetAll();
+            return _repository.GetAll();
         }
 
         public T Get(PK id)
         {
-            return repository.Get(id);
+            return _repository.Get(id);
         }
 
         public void Update(T t)
         {
-            repository.Update(t);
+            _repository.Update(t);
         }
 
         

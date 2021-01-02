@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieAPI.Models
 {
@@ -16,10 +12,12 @@ namespace MovieAPI.Models
         {
             modelBuilder.Entity<ActorMovie>()
                 .HasKey(bc => new { bc.ActorId, bc.MovieId });
+           
             modelBuilder.Entity<ActorMovie>()
                 .HasOne(bc => bc.Actor)
                 .WithMany(b => b.Movies)
                 .HasForeignKey(bc => bc.ActorId);
+            
             modelBuilder.Entity<ActorMovie>()
                 .HasOne(bc => bc.Movie)
                 .WithMany(c => c.Actors)

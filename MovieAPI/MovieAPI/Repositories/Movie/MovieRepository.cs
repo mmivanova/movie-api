@@ -1,13 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MovieAPI.Models;
-using MovieAPI.Repositories;
-using MovieAPI.Repositories.Movie;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MovieAPI.Controllers
+﻿namespace MovieAPI.Repositories.Movie
 {
-    public class MovieRepository : GenericRepository<Movie, int>, IMovieRepository
+    public class MovieRepository : GenericRepository<Models.Movie, int>, IMovieRepository
     {
         public MovieRepository()
         {

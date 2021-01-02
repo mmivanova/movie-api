@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using MovieAPI.Models;
-using MovieAPI.Services.Movie;
+using MovieAPI.Services;
 
 namespace MovieAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class MovieController : ControllerBase
     {
-        private static readonly MovieRepository movieRepository = new MovieRepository();
-        readonly MovieService _service = new MovieService(movieRepository);
+        private readonly IMovieService _service;
+
+        public MovieController(IMovieService service)
+        {
+            _service = service;
+        }
 
         [HttpPost]
         public void Create([FromBody] Movie movie)
@@ -24,22 +25,20 @@ namespace MovieAPI.Controllers
    
         [HttpGet]
         [Route("all")]
-        public IEnumerable<Movie> GetAll()
+        public ActionResult<IEnumerable<Movie>> GetAll()
         {
-            return _service.GetAll();
+            return _service.GetAll().ToList();
         }
 
         [HttpGet]
         [Route("{id?}")]
-        public Movie Get([FromQuery] int id)
+        public ActionResult<Movie> Get([FromQuery] int id)
         {
             return _service.Get(id);
         }
 
         [HttpPut]
-        public void Update(
-
-            [FromBody] Movie movie)
+        public void Update([FromBody] Movie movie)
         {
             _service.Update(movie);
         }

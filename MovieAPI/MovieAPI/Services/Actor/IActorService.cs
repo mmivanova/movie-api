@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MovieAPI.Services
 {
-    interface IActorService : IService<Models.Actor, int>
+    public interface IActorService : IService<Models.Actor, int>
     {
       
     }

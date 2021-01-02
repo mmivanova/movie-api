@@ -1,12 +1,8 @@
 ﻿using MovieAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace MovieAPI.Services.Movie
+namespace MovieAPI.Services
 {
-    interface IMovieService : IService<Models.Movie, int>
+    public interface IMovieService : IService<Movie, int>
     {
        
     }

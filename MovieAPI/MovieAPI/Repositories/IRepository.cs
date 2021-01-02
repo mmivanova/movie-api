@@ -9,6 +9,8 @@ namespace MovieAPI.Repositories
         where T : class 
        
     {
+        // TODO: bool SaveChanges();
+
         IEnumerable<T> GetAll();
         T Get(PK id);
         void Create(T t);

@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using MovieAPI.Models;
-using MovieAPI.Repositories.Actor;
 using MovieAPI.Services;
-using Serilog;
+using MovieAPI.Repositories;
 
 namespace MovieAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class ActorController : Controller
+    public class ActorController : ControllerBase
     {
-        private static readonly ActorRepository actorRepository = new ActorRepository();
-        readonly ActorService _service = new ActorService(actorRepository);
+        private readonly IActorService _service;
+
+        public ActorController(IActorService service)
+        {
+            _service = service;
+        }
 
         [HttpPost]
         public void Create([FromBody] Actor actor)
