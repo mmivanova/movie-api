@@ -28,14 +28,14 @@ namespace MovieAPI.Services
             _repository.Delete(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            return _repository.GetAll();
+            return await _repository.GetAll();
         }
 
-        public T Get(PK id)
+        public async Task<T> Get(PK id)
         {
-            return _repository.Get(id);
+            return await _repository.Get(id);
         }
 
         public void Update(T t)

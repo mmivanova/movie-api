@@ -7,12 +7,9 @@ namespace MovieAPI.Repositories
 {
     public interface IRepository<T, PK>
         where T : class 
-       
     {
-        // TODO: bool SaveChanges();
-
-        IEnumerable<T> GetAll();
-        T Get(PK id);
+        Task<IEnumerable<T>> GetAll();
+        Task<T> Get(PK id);
         void Create(T t);
         void Update(T t);
         void Delete(PK id);

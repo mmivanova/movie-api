@@ -32,12 +32,12 @@ namespace MovieAPI.Repositories
             _context.SaveChanges();
         }
 
-        public T Get(PK id)
+        public async Task<T> Get(PK id)
         {
             return table.Find(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
             return table.ToList();
         }

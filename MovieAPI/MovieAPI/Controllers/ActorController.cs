@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieAPI.Models;
 using MovieAPI.Services;
-using MovieAPI.Repositories;
+using System.Threading.Tasks;
 
 namespace MovieAPI.Controllers
 {
@@ -25,16 +24,16 @@ namespace MovieAPI.Controllers
 
         [HttpGet]
         [Route("all")]
-        public IEnumerable<Actor> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return _service.GetAll();
+            return Ok(await _service.GetAll());
         }
 
         [HttpGet]
         [Route("{id?}")]
-        public Actor Get([FromQuery] int id)
+        public async Task<IActionResult> Get([FromQuery] int id)
         {
-            return _service.Get(id);
+            return Ok(await _service.Get(id));
         }
 
         [HttpPut]

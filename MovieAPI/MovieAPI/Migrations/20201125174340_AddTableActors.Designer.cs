@@ -43,18 +43,11 @@ namespace MovieAPI.Migrations
 
             modelBuilder.Entity("MovieAPI.Models.ActorMovie", b =>
                 {
-                    //b.Property<int>("ActorMovieId")
-                    //    .ValueGeneratedOnAdd()
-                    //    .HasColumnType("int")
-                    //    .UseIdentityColumn();
-
                     b.Property<int>("ActorId")
                         .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
-
-                    //b.HasKey("ActorMovieId");
 
                     b.HasIndex("ActorId");
 
