@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MovieAPI.Repositories
 {
-    public interface IRepository<T, PK>
+    public interface IRepository<T, PK, TDto>
         where T : class 
     {
         Task<IEnumerable<T>> GetAll();

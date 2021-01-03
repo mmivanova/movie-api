@@ -1,6 +1,8 @@
-﻿namespace MovieAPI.Repositories.Actor
+﻿using MovieAPI.Dtos.ActorDtos;
+
+namespace MovieAPI.Repositories.Actor
 {
-    public interface IActorRepository : IRepository<Models.Actor, int>
+    public interface IActorRepository : IRepository<Models.Actor, int, BaseActorDto>
     {
        
     }

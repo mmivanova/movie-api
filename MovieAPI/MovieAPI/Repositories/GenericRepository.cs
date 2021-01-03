@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieAPI.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieAPI.Repositories
 {
-    public abstract class GenericRepository<T, PK> : IRepository<T, PK>
+    public abstract class GenericRepository<T, PK, TDto> : IRepository<T, PK, TDto>
         where T : class
     {
         private readonly APIDBContext _context = null;

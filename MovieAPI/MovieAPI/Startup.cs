@@ -1,12 +1,10 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieAPI.Controllers;
-using MovieAPI.Models;
-using MovieAPI.Repositories;
 using MovieAPI.Repositories.Actor;
 using MovieAPI.Repositories.Movie;
 using MovieAPI.Services;
@@ -28,16 +26,16 @@ namespace MovieAPI
             //services.AddDbContext<APIDBContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
+
+            services.AddAutoMapper(typeof(Startup));
+            services.AddSwaggerGen();
+
             // Movie
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IMovieService, MovieService>();
             // Actor
             services.AddScoped<IActorRepository, ActorRepository>();
             services.AddScoped<IActorService, ActorService>();
-
-            services.AddSwaggerGen();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

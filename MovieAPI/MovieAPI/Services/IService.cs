@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace MovieAPI.Services
 {
-    public interface IService<T, PK>
+    public interface IService<T, PK, TDto>
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> Get(PK id);
-        void Update(T t);
-        void Create(T t);
+        void Update(TDto t);
+        void Create(TDto t);
         void Delete(PK id);
 
 

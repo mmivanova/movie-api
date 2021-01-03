@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MovieAPI.Models;
+using MovieAPI.Dtos.MovieDtos;
 using MovieAPI.Services;
 
 namespace MovieAPI.Controllers
@@ -19,9 +18,18 @@ namespace MovieAPI.Controllers
         }
 
         [HttpPost]
-        public void Create([FromBody] Movie movie)
+        public IActionResult Create(CreateMovieDto movie)
         {
-            _service.Create(movie);
+            try
+            {
+                _service.Create(movie);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok();
         }
    
         [HttpGet]
@@ -39,15 +47,32 @@ namespace MovieAPI.Controllers
         }
 
         [HttpPut]
-        public void Update([FromBody] Movie movie)
+        public IActionResult Update(UpdateMovieDto movie)
         {
-            _service.Update(movie);
+            try
+            {
+                _service.Update(movie);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok();
         }
 
         [HttpDelete]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _service.Delete(id);
+            try
+            {
+                _service.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok();
         }
     }
 }

@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using MovieAPI.Dtos.ActorDtos;
 using MovieAPI.Models;
 using MovieAPI.Services;
+using System;
 using System.Threading.Tasks;
 
 namespace MovieAPI.Controllers
@@ -10,16 +13,27 @@ namespace MovieAPI.Controllers
     public class ActorController : ControllerBase
     {
         private readonly IActorService _service;
+        private readonly IMapper _mapper;
 
-        public ActorController(IActorService service)
+        public ActorController(IActorService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public void Create([FromBody] Actor actor)
+        public IActionResult Create(CreateActorDto createActorDto)
         {
-            _service.Create(actor);
+            try
+            {
+                _service.Create(createActorDto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok();
         }
 
         [HttpGet]
@@ -33,21 +47,37 @@ namespace MovieAPI.Controllers
         [Route("{id?}")]
         public async Task<IActionResult> Get([FromQuery] int id)
         {
+            
             return Ok(await _service.Get(id));
         }
 
         [HttpPut]
-        public void Update(
-
-            [FromBody] Actor actor)
+        public IActionResult Update(UpdateActorDto actor)
         {
-            _service.Update(actor);
+            try
+            {
+                _service.Update(actor);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok();
         }
 
         [HttpDelete]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _service.Delete(id);
+            try
+            {
+                _service.Delete(id);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok();
         }
     }
 }

@@ -1,16 +1,12 @@
-﻿using MovieAPI.Models;
-using MovieAPI.Repositories;
+﻿using AutoMapper;
+using MovieAPI.Dtos.ActorDtos;
 using MovieAPI.Repositories.Actor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieAPI.Services
 {
-    public class ActorService : GenericService<Actor, int>, IActorService
+    public class ActorService : GenericService<Models.Actor, int, BaseActorDto>, IActorService
     {
-        public ActorService(IActorRepository repository) : base(repository)
+        public ActorService(IActorRepository repository, IMapper mapper) : base(repository, mapper)
         {
         }
     }

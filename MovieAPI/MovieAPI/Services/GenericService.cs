@@ -1,26 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
 using MovieAPI.Repositories;
-using System;
+using MovieAPI.Repositories.Actor;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieAPI.Services
 {
-    public abstract class GenericService<T, PK> : IService<T, PK>
+    public abstract class GenericService<T, PK, TDto> : IService<T, PK, TDto>
         where T : class
     {
-        //private readonly GenericRepository<T, PK> _repository;
-        private readonly IRepository<T, PK> _repository;
+        private readonly IRepository<T, PK, TDto> _repository;
+        private readonly IMapper _mapper;
 
-        public GenericService(IRepository<T, PK> repository)
+        public GenericService(IRepository<T, PK, TDto> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
-
-        public void Create(T t)
+       
+        public void Create(TDto dto)
         {
-            _repository.Create(t);
+            var entity = _mapper.Map<T>(dto);
+            _repository.Create(entity);
         }
 
         public void Delete(PK id)
@@ -38,9 +39,10 @@ namespace MovieAPI.Services
             return await _repository.Get(id);
         }
 
-        public void Update(T t)
+        public void Update(TDto dto)
         {
-            _repository.Update(t);
+            var entity = _mapper.Map<T>(dto);
+            _repository.Update(entity);
         }
 
         
